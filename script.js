@@ -52,11 +52,8 @@ function updateCarousel() {
     })
 
   }
-
-nextButton.addEventListener('click', nextSlide)
-prevButton.addEventListener('click', prevSlide)
-
-navItems.forEach(h4 =>{
+  
+  navItems.forEach(h4 =>{
 const letters = h4.textContent.split("").map(char => `<span>${char}</span>`).join("")
 h4.innerHTML = letters
 })
@@ -66,7 +63,7 @@ h4.innerHTML = letters
 //     link.addEventListener("mouseenter",(e)=>{
 //     const h4 = Array.from(e.target.querySelectorAll("h4"))
 //     h4.forEach(h4 =>{
-//         const spans = Array.from(h4.querySelectorAll("span"))
+    //         const spans = Array.from(h4.querySelectorAll("span"))
 //         spans.forEach(span => {
 //             gsap.to(span,{
 //                 yPercent:-100,
@@ -94,6 +91,12 @@ function startAnimation(){
           ease:"ease"
     })
 
+    tl.from(".bottom-text",{
+        opacity:0,
+        xPercent:-6,
+        ease:"ease"
+    })
+
     const tl1 = gsap.timeline({
         scrollTrigger:{
             trigger:".main-container",
@@ -106,7 +109,7 @@ function startAnimation(){
 
     tl1.from(".scrolling-text-container", { scale: 20 })
     tl1.from("#banner-video", { clipPath: "circle(150% at 50% 50%)" }, "<")
-
+    
    
     rows.forEach((line,index) =>{
         const xOffset = index % 2 === 0 ? 3 : -3
@@ -120,12 +123,15 @@ function startAnimation(){
         scrollTrigger:{
             trigger:".top-text",
             start:"top -20%",
-            end:"bottom -70%",
-            // markers:true,
+            end:"bottom -60%",
+            markers:true,
             scrub:1,   
         }
     })
 
 }
+
+nextButton.addEventListener('click', nextSlide)
+prevButton.addEventListener('click', prevSlide)
 
 window.addEventListener("DOMContentLoaded", startAnimation)
