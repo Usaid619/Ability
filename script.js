@@ -35,14 +35,11 @@ function prevSlide() {
 function updateCarousel() {
     slides.forEach((slide, index) => {
       if (index < currentIndex) {
-        slide.style.transform = 'translateY(100%)'
-        slide.style.opacity = '0'
+        slide.classList.remove("active-slide")
       } else if (index === currentIndex) {
-        slide.style.transform = 'translateY(0)'
-        slide.style.opacity = '1'
+        slide.classList.add("active-slide")
       } else {
-        slide.style.transform = 'translateY(100%)'
-        slide.style.opacity = '0'
+        slide.classList.remove("active-slide")
       }
     })
 
@@ -56,30 +53,30 @@ function updateCarousel() {
 
   }
 
-nextButton.addEventListener('click', nextSlide);
-prevButton.addEventListener('click', prevSlide);
+nextButton.addEventListener('click', nextSlide)
+prevButton.addEventListener('click', prevSlide)
 
 navItems.forEach(h4 =>{
 const letters = h4.textContent.split("").map(char => `<span>${char}</span>`).join("")
 h4.innerHTML = letters
 })
 
-navLinks.forEach((link,index) =>{
-    // nav item me hover karen toh saare span -100% ho jaayen
-    link.addEventListener("mouseenter",(e)=>{
-    const h4 = Array.from(e.target.querySelectorAll("h4"))
-    h4.forEach(h4 =>{
-        const spans = Array.from(h4.querySelectorAll("span"))
-        spans.forEach(span => {
-            gsap.to(span,{
-                yPercent:-100,
-                duration:.3,
-                ease:"ease"
-            })
-        })
-    })
-    })
-})
+// navLinks.forEach((link,index) =>{
+//     // spans should translate when nav-items is hovered
+//     link.addEventListener("mouseenter",(e)=>{
+//     const h4 = Array.from(e.target.querySelectorAll("h4"))
+//     h4.forEach(h4 =>{
+//         const spans = Array.from(h4.querySelectorAll("span"))
+//         spans.forEach(span => {
+//             gsap.to(span,{
+//                 yPercent:-100,
+//                 duration:.3,
+//                 ease:"ease"
+//             })
+//         })
+//     })
+//     })
+// })
 
 function startAnimation(){
     const tl = gsap.timeline()
@@ -124,12 +121,11 @@ function startAnimation(){
             trigger:".top-text",
             start:"top -20%",
             end:"bottom -70%",
-            markers:true,
+            // markers:true,
             scrub:1,   
         }
     })
 
 }
-
 
 window.addEventListener("DOMContentLoaded", startAnimation)

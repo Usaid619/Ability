@@ -12,6 +12,7 @@
 body{
     overflow-x: hidden;
     font-family: ability;
+    background-color: black;
 }
 
 .main-container{
@@ -20,15 +21,15 @@ position: relative;
 
 
 header{
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: space-between;
-   top: 0;
-   left: 0;
+   width: 100%;
    padding: .2em 1em;
-    z-index: 999999;
+    z-index: 100;
     cursor: pointer;
-width: 100%;
 background-color: rgba(0, 0, 0, 0.5);
 color: white;
 }
@@ -54,19 +55,16 @@ color: white;
     gap: 2px;
     /* border: 1px solid red; */
     height: 20px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
-.nav-item h4 {
-    display: inline-block;
-    transform: translateY(0);
-    /* opacity: 1; */
-    transition: transform 0.3s ease, opacity 0.3s ease;
+.nav-item h4{
+    transition: translate .3s ease;
 }
 
-/* .nav-item:hover h4{
+.nav-item:hover h4{
     translate: 0 -100%;
-} */
+}
 
 .header-logo{
     border-radius: 50%;
@@ -86,14 +84,8 @@ clip-path: circle(0% at 50% 50%);
     position: absolute;
     z-index: 5;
     display: flex;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: absolute; */
     inset: 0;
-    color: rgb(229, 255, 0);
-/* background-color: rgba(76, 0, 255, 0.651); */
+    color: white;
 }
 
 .text{
@@ -104,7 +96,7 @@ clip-path: circle(0% at 50% 50%);
 }
 
 .top-text{
-top: 15%;
+top: 14%;
 left: 50%;
 translate: -50% -50%;
 
@@ -113,7 +105,7 @@ text-align: center;
 
 .bottom-text{   
     isolation: isolate;
-bottom: 10%;
+bottom: 6%;
 left: 5%;
 }
 
@@ -141,7 +133,7 @@ left: 5%;
     width: 100%;
     gap: 1em;
     padding: 3px;
-    border: 1px solid rgb(173, 10, 10);
+    /* border: 1px solid rgb(173, 10, 10); */
 }
 
 .text-row{
@@ -150,7 +142,7 @@ left: 5%;
     height: 20%;
     width: max-content;
     gap: 5px;
-    border: 1px solid rgb(71, 177, 9);
+    /* border: 1px solid rgb(71, 177, 9); */
     /* translate: -50% 0; */
 }
 
@@ -213,9 +205,14 @@ left: 5%;
     align-items: center;
     height: 100%;
     width: 100%;
+    opacity: 0;
     gap: 2em;
     /* background-color: pink; */
     transition: all .4s ease;
+}
+
+.active-slide{
+    opacity: 1;
 }
 
 .slide > img{
