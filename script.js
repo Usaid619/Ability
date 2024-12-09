@@ -122,7 +122,7 @@ function updateCarousel() {
         const image = slide.querySelector("img")
         if(curtain){
             // killing previous ongoing animations
-            gsap.killTweensOf(curtain);
+            gsap.killTweensOf(curtain)
 
             gsap.set(curtain,{xPercent:100})
 
@@ -136,8 +136,6 @@ function updateCarousel() {
             gsap.from(image,{
                 opacity:0,
                 duration:1,
-                scale:0.9,
-                rotate:"5deg"
             })
         }
       } else {

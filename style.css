@@ -46,6 +46,7 @@ transition: background-color 0.3s ease;
     gap: 1.4em;
     align-items: center;
     height: 3.89em;
+    /* border: 1px solid red; */
 }
 
 .nav-item{
@@ -53,6 +54,7 @@ transition: background-color 0.3s ease;
     display: flex;
     text-align: center;
     height: 22px;
+    /* border: 1px solid red; */
 }
 
 .text-wrap{
