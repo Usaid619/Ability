@@ -1,5 +1,6 @@
 const navLinks = Array.from(document.querySelectorAll(".nav-item"))
 const navItems = Array.from(document.querySelectorAll(".nav-item h4"))
+const textWrap = Array.from(document.querySelectorAll(".text-wrap"))
 
 const topText = document.querySelector(".top-text")
 const rows = document.querySelectorAll(".text-row")
@@ -12,6 +13,61 @@ const nextButton = document.querySelector(".right")
 const dots =  document.querySelectorAll(".dots")
 
 let currentIndex = 0
+
+function startAnimation(){
+    const tl = gsap.timeline()
+
+    tl.from(".header-logo",{
+        opacity:0,
+        duration:.3,
+        delay:.4,
+        ease:"ease"
+    })
+    
+    tl.from(navLinks,{
+        opacity:0,
+        stagger:.1,
+        ease:"ease"
+    })
+
+    tl.from(".bottom-text",{
+        opacity:0,
+        xPercent:-6,
+        ease:"ease"
+    })
+
+    const tl1 = gsap.timeline({
+        scrollTrigger:{
+            trigger:".main-container",
+            start:"top top",
+            end:"bottom 30%",
+            scrub:2,
+            pin:true,
+        }
+    })
+
+    tl1.from(".scrolling-text-container", { scale: 20 })
+    tl1.from("#banner-video", { clipPath: "circle(150% at 50% 50%)" }, "<")
+    
+   
+    rows.forEach((line,index) =>{
+        const xOffset = index % 2 === 0 ? 3 : -3
+        tl1.to(line,{
+        xPercent:xOffset,
+        },"a")
+    })
+   
+    gsap.from(".top-text",{
+        opacity:0,
+        scrollTrigger:{
+            trigger:".top-text",
+            start:"top -20%",
+            end:"bottom -60%",
+            scrub:1,   
+        }
+    })
+
+}
 
 function nextSlide(){
     if(currentIndex < slides.length - 1){
@@ -52,84 +108,43 @@ function updateCarousel() {
     })
 
   }
+
+//   Splitting The Text
+  textWrap.forEach(textWrap =>{
+    const outgoing = textWrap.querySelector(".outgoing")
+    const incoming = textWrap.querySelector(".incoming")
+
+    outgoing.innerHTML = outgoing.textContent.split("").map(letter => `<p>${letter}</p>`).join("")
+    incoming.innerHTML = incoming.textContent.split("").map(letter => `<p>${letter}</p>`).join("")
+  })
   
-  navItems.forEach(h4 =>{
-const letters = h4.textContent.split("").map(char => `<span>${char}</span>`).join("")
-h4.innerHTML = letters
-})
+//   Animating the splitted Text
+   navLinks.forEach(link =>{
+    const outgoingLetters = Array.from(link.querySelectorAll(".outgoing p"))
+        const incomingLetters = Array.from(link.querySelectorAll(".incoming p"))
 
-// navLinks.forEach((link,index) =>{
-//     // spans should translate when nav-items is hovered
-//     link.addEventListener("mouseenter",(e)=>{
-//     const h4 = Array.from(e.target.querySelectorAll("h4"))
-//     h4.forEach(h4 =>{
-    //         const spans = Array.from(h4.querySelectorAll("span"))
-//         spans.forEach(span => {
-//             gsap.to(span,{
-//                 yPercent:-100,
-//                 duration:.3,
-//                 ease:"ease"
-//             })
-//         })
-//     })
-//     })
-// })
+    link.addEventListener("mouseenter", () =>{
+        
+        gsap.to(outgoingLetters,{    
+            
+            yPercent:-100,
+            duration:0.2,
+            stagger:0.05,
+            ease:"power2.out",
+        })
 
-function startAnimation(){
-    const tl = gsap.timeline()
-
-    tl.from(".header-logo",{
-        opacity:0,
-        duration:.3,
-        delay:.4,
-        ease:"ease"
+        gsap.to(incomingLetters,{
+            yPercent:-100,
+            duration:0.2,
+            stagger:0.05,
+            ease:"power2.out",
+            onComplete:()=>{
+                gsap.set(outgoingLetters,{yPercent:0})
+                gsap.set(incomingLetters,{yPercent:0})
+            }
+        })
     })
-    
-    tl.from(navItems,{
-        opacity:0,
-        stagger:.1,
-          ease:"ease"
-    })
-
-    tl.from(".bottom-text",{
-        opacity:0,
-        xPercent:-6,
-        ease:"ease"
-    })
-
-    const tl1 = gsap.timeline({
-        scrollTrigger:{
-            trigger:".main-container",
-            start:"top top",
-            end:"bottom 30%",
-            scrub:2,
-            pin:true,
-        }
-    })
-
-    tl1.from(".scrolling-text-container", { scale: 20 })
-    tl1.from("#banner-video", { clipPath: "circle(150% at 50% 50%)" }, "<")
-    
-   
-    rows.forEach((line,index) =>{
-        const xOffset = index % 2 === 0 ? 3 : -3
-        tl1.to(line,{
-        xPercent:xOffset,
-        },"a")
-    })
-   
-    gsap.from(".top-text",{
-        opacity:0,
-        scrollTrigger:{
-            trigger:".top-text",
-            start:"top -20%",
-            end:"bottom -60%",
-            markers:true,
-            scrub:1,   
-        }
-    })
-
-}
+   })
 
 nextButton.addEventListener('click', nextSlide)
 prevButton.addEventListener('click', prevSlide)
