@@ -1,10 +1,15 @@
+// Navigation
 const navLinks = Array.from(document.querySelectorAll(".nav-item"))
 const navItems = Array.from(document.querySelectorAll(".nav-item h4"))
-const textWrap = Array.from(document.querySelectorAll(".text-wrap"))
 
+// TextWrap
+const textWrap = Array.from(document.querySelectorAll(".text-wrap"))
 const topText = document.querySelector(".top-text")
+
+// Reveal
 const rows = document.querySelectorAll(".text-row")
 
+// Carousel
 const carousel = document.querySelector(".carousel-container")
 const container = document.querySelector(".slides")
 const slides = document.querySelectorAll(".slide")
@@ -109,6 +114,27 @@ function updateCarousel() {
         slide.classList.remove("active-slide")
       } else if (index === currentIndex) {
         slide.classList.add("active-slide")
+
+        // curtain animation
+        const curtain = slide.querySelector(".curtain")
+        const image = slide.querySelector("img")
+        if(curtain){
+            gsap.set(curtain,{xPercent:100})
+
+            gsap.to(curtain,{
+                xPercent:-100,
+                duration:3.5,
+                ease:"power2.out"
+
+            })
+
+            gsap.from(image,{
+                opacity:0,
+                duration:1,
+                scale:0.9,
+                rotate:"5deg"
+            })
+        }
       } else {
         slide.classList.remove("active-slide")
       }
