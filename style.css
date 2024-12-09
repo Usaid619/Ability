@@ -30,31 +30,28 @@ header{
     justify-content: space-between;
    padding: .2em 1em;
     z-index: 1000;
-    cursor: pointer;
 color: white;
 transition: background-color 0.3s ease;
 }
 
 .left-header{
-
+    cursor: pointer;
 }
 
 .right-header{
     display: flex;
-    justify-content: center;
+    align-items: center;
     list-style: none;
     gap: 1.4em;
     align-items: center;
-    height: 3.89em;
-    /* border: 1px solid red; */
+    height: 100%;
 }
 
 .nav-item{
-    flex: 1;
     display: flex;
     text-align: center;
     height: 22px;
-    /* border: 1px solid red; */
+    cursor: pointer;
 }
 
 .text-wrap{
@@ -66,9 +63,12 @@ transition: background-color 0.3s ease;
     transition: all .2s ease;
 }
 
-
 .text-wrap div{
     display: flex;
+}
+
+.incoming{
+translate: 0 50%;
 }
 
 .contact{
@@ -167,6 +167,7 @@ left: 5%;
     object-fit: cover;
     border-radius: 50%;
     height: 40px;
+    width: 40px;
 }
 
 .section-2{
@@ -174,8 +175,7 @@ left: 5%;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: black;
-    
+    background-color: black; 
 }
 
 .carousel-container{

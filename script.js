@@ -33,14 +33,12 @@ function animateLandingPage(){
         delay:.4,
         ease:"ease"
     })
-    
-    tl.from(navLinks,{
+    .from(navLinks,{
         opacity:0,
         stagger:.1,
         ease:"ease"
     })
-
-    tl.from(".bottom-text",{
+    .from(".bottom-text",{
         opacity:0,
         xPercent:-6,
         ease:"ease"
@@ -58,8 +56,12 @@ function animateOnScroll(){
         }
     })
 
-    tl1.from(".scrolling-text-container", { scale: 20 })
-    tl1.from("#banner-video", { clipPath: "circle(150% at 50% 50%)" }, "<")
+    tl1.from(".scrolling-text-container",{
+        scale: 20
+    })
+    .from("#banner-video", {
+        clipPath: "circle(150% at 50% 50%)"
+    },"<")
 
     rows.forEach((line,index) =>{
         const xOffset = index % 2 === 0 ? 3 : -3
@@ -95,7 +97,6 @@ function nextSlide(){
     } else{
         currentIndex = 0
     }
-
     updateCarousel()
 }
 
@@ -114,9 +115,6 @@ function updateCarousel() {
         slide.classList.remove("active-slide")
       } else if (index === currentIndex) {
         slide.classList.add("active-slide")
-
-
-
         // curtain animation
         const curtain = slide.querySelector(".curtain")
         const image = slide.querySelector("img")
@@ -151,7 +149,7 @@ function updateCarousel() {
         }
     })
 
-  }
+}
 
 //   Splitting The Text
   textWrap.forEach(textWrap =>{
@@ -178,7 +176,7 @@ function updateCarousel() {
         })
 
         gsap.to(incomingLetters,{
-            yPercent:-100,
+            yPercent:-150,
             duration:0.2,
             stagger:0.05,
             ease:"power2.out",
