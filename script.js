@@ -14,9 +14,12 @@ const dots =  document.querySelectorAll(".dots")
 
 let currentIndex = 0
 
+function startAnimations(){
+    animateLandingPage()
+    animateOnScroll()
+}
 
-
-function startAnimation(){
+function animateLandingPage(){
     const tl = gsap.timeline()
 
     tl.from(".header-logo",{
@@ -37,7 +40,9 @@ function startAnimation(){
         xPercent:-6,
         ease:"ease"
     })
+}
 
+function animateOnScroll(){
     const tl1 = gsap.timeline({
         scrollTrigger:{
             trigger:".main-container",
@@ -50,8 +55,7 @@ function startAnimation(){
 
     tl1.from(".scrolling-text-container", { scale: 20 })
     tl1.from("#banner-video", { clipPath: "circle(150% at 50% 50%)" }, "<")
-    
-   
+
     rows.forEach((line,index) =>{
         const xOffset = index % 2 === 0 ? 3 : -3
         tl1.to(line,{
@@ -160,4 +164,4 @@ function updateCarousel() {
 nextButton.addEventListener('click', nextSlide)
 prevButton.addEventListener('click', prevSlide)
 
-window.addEventListener("DOMContentLoaded", startAnimation)
+window.addEventListener("DOMContentLoaded", startAnimations)
