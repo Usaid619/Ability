@@ -21,16 +21,18 @@ position: relative;
 
 
 header{
-    position: absolute;
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
-   width: 100%;
    padding: .2em 1em;
-    z-index: 100;
+    z-index: 1000;
     cursor: pointer;
 color: white;
+transition: background-color 0.3s ease;
 }
 
 .left-header{
@@ -101,7 +103,7 @@ clip-path: circle(0% at 50% 50%);
 }
 
 .top-text{
-top: 14%;
+top: 16%;
 left: 50%;
 translate: -50% -50%;
 text-align: center;

@@ -14,6 +14,8 @@ const dots =  document.querySelectorAll(".dots")
 
 let currentIndex = 0
 
+
+
 function startAnimation(){
     const tl = gsap.timeline()
 
@@ -64,6 +66,15 @@ function startAnimation(){
             start:"top -20%",
             end:"bottom -60%",
             scrub:1,   
+        }
+    })
+
+    gsap.to(".header",{
+        backgroundColor:"#000",
+        scrollTrigger:{
+            trigger:document.body,
+            start:"100px top",
+            toggleActions:"play none none reverse"
         }
     })
 
