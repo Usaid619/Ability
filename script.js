@@ -115,10 +115,15 @@ function updateCarousel() {
       } else if (index === currentIndex) {
         slide.classList.add("active-slide")
 
+
+
         // curtain animation
         const curtain = slide.querySelector(".curtain")
         const image = slide.querySelector("img")
         if(curtain){
+            // killing previous ongoing animations
+            gsap.killTweensOf(curtain);
+
             gsap.set(curtain,{xPercent:100})
 
             gsap.to(curtain,{
