@@ -112,15 +112,23 @@ function prevSlide() {
 function updateCarousel() {
     slides.forEach((slide, index) => {
       if (index < currentIndex) {
-        slide.classList.remove("active-slide")
+        gsap.to(slide,{
+            opacity:0,
+            duration:.3,
+            ease:"ease"
+        })
       } else if (index === currentIndex) {
-        slide.classList.add("active-slide")
         // curtain animation
         const curtain = slide.querySelector(".curtain")
         const image = slide.querySelector("img")
         if(curtain){
             // killing previous ongoing animations
             gsap.killTweensOf(curtain)
+
+            gsap.to(slide,{
+                opacity:1,
+                duration:.2
+            })
 
             gsap.set(curtain,{xPercent:100})
 
@@ -137,7 +145,11 @@ function updateCarousel() {
             })
         }
       } else {
-        slide.classList.remove("active-slide")
+        gsap.to(slide,{
+            opacity:0,
+            duration:.3,
+            ease:"ease"
+        })
       }
     })
 
@@ -151,18 +163,22 @@ function updateCarousel() {
 
 }
 
+function splitText(element){
+element.innerHTML = element.textContent.split("").map(letter =>`<p>${letter}</p>`).join("")
+}
+
 //   Splitting The Text
   textWrap.forEach(textWrap =>{
     const outgoing = textWrap.querySelector(".outgoing")
     const incoming = textWrap.querySelector(".incoming")
 
-    outgoing.innerHTML = outgoing.textContent.split("").map(letter => `<p>${letter}</p>`).join("")
-    incoming.innerHTML = incoming.textContent.split("").map(letter => `<p>${letter}</p>`).join("")
+    splitText(outgoing)
+    splitText(incoming)
   })
   
 //   Animating the splitted Text
    navLinks.forEach(link =>{
-    const outgoingLetters = Array.from(link.querySelectorAll(".outgoing p"))
+        const outgoingLetters = Array.from(link.querySelectorAll(".outgoing p"))
         const incomingLetters = Array.from(link.querySelectorAll(".incoming p"))
 
     link.addEventListener("mouseenter", () =>{
