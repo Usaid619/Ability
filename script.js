@@ -78,7 +78,8 @@ function animateOnScroll(){
         const xOffset = index % 2 === 0 ? 5 : -5
         tl1.to(line,{
         xPercent:xOffset,
-        delay:"-0.1"
+        delay:"-0.1",
+        ease:"ease"
         },"a")
     })
 
@@ -93,16 +94,7 @@ function animateOnScroll(){
             scrub:1
         }
     })
-   
-    // tl1.from(".top-text",{
-    //     opacity:0,
-    //     scrollTrigger:{
-    //         trigger:".top-text",
-    //         start:"top -20%",
-    //         end:"bottom -60%",
-    //         scrub:1,   
-    //     }
-    // })
+
 
     gsap.to(".header",{
         backgroundColor:"#000",
@@ -214,7 +206,7 @@ element.innerHTML = element.textContent
         
         gsap.to(outgoingLetters,{    
             
-            yPercent:-100,
+            yPercent:-120,
             duration:0.4,
             stagger:0.05,
             ease:"power2.out",
