@@ -101,23 +101,27 @@ clip-path: circle(0% at 50% 50%);
 .text{
     position: absolute;
     z-index: 10;
-    width: 20%;
+    display: flex; 
+    flex-wrap: wrap;
+    height: max-content;
+    width: 250px;
+    max-width: 20%;
+    line-height: 1.4em;
+    font-size: 1.3em;
 }
 
 .top-text{
-top: 16%;
+top: 19%;
 left: 50%;
 translate: -50% -50%;
 text-align: center;
+justify-content: center;
+width: 300px;
+max-width: 25%;
 }
 
-.bottom-text{  
-    display: flex; 
-    flex-wrap: wrap;
-    /* background-color: red; */
-    height: max-content;
-    width: 200px;
-    max-width: 20%;
+.bottom-text{ 
+    font-size: 1em; 
 bottom: 6%;
 left: 5%;
 }
@@ -142,8 +146,9 @@ left: 5%;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: 1em;
+    /* gap: 1em; */
     padding: 3px;
+    translate: 0 20px;
 }
 
 .text-row{
@@ -163,7 +168,7 @@ left: 5%;
 }
 
 .text-line h3{
-    font-size: 5.14em;
+    font-size: 5em;
     font-weight: 888;
     text-transform: lowercase;
 }
