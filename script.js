@@ -5,6 +5,7 @@ const navItems = Array.from(document.querySelectorAll(".nav-item h4"))
 // TextWrap
 const textWrap = Array.from(document.querySelectorAll(".text-wrap"))
 const topText = document.querySelector(".top-text")
+const bottomText = document.querySelector(".bottom-text")
 
 // Reveal
 const rows = document.querySelectorAll(".text-row")
@@ -25,6 +26,9 @@ function startAnimations(){
 }
 
 function animateLandingPage(){
+    splitText(bottomText)
+    const indiLetters = Array.from(bottomText.querySelectorAll("p"))
+    
     const tl = gsap.timeline()
 
     tl.from(".header-logo",{
@@ -41,6 +45,11 @@ function animateLandingPage(){
     .from(".bottom-text",{
         opacity:0,
         xPercent:-6,
+        ease:"ease"
+    })
+    .from(indiLetters,{
+        opacity:0,
+        stagger:0.01,
         ease:"ease"
     })
 }
@@ -164,7 +173,12 @@ function updateCarousel() {
 }
 
 function splitText(element){
-element.innerHTML = element.textContent.split("").map(letter =>`<p>${letter}</p>`).join("")
+element.innerHTML = element.textContent
+.split("")
+.map(letter => letter === " "
+     ? `<p>&nbsp;</p>`
+     : `<p>${letter}</p>`)
+.join("")
 }
 
 //   Splitting The Text

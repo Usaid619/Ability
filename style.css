@@ -111,8 +111,13 @@ translate: -50% -50%;
 text-align: center;
 }
 
-.bottom-text{   
-    isolation: isolate;
+.bottom-text{  
+    display: flex; 
+    flex-wrap: wrap;
+    /* background-color: red; */
+    height: max-content;
+    width: 200px;
+    max-width: 20%;
 bottom: 6%;
 left: 5%;
 }
