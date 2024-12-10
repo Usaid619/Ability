@@ -207,14 +207,14 @@ element.innerHTML = element.textContent
         gsap.to(outgoingLetters,{    
             
             yPercent:-120,
-            duration:0.4,
+            duration:0.2,
             stagger:0.05,
             ease:"power2.out",
         })
 
         gsap.to(incomingLetters,{
             yPercent:-150,
-            duration:0.4,
+            duration:0.2,
             stagger:0.05,
             ease:"power2.out",
             onComplete:()=>{
