@@ -98,6 +98,7 @@ function animateOnScroll(){
 
     gsap.to(".header",{
         backgroundColor:"#000",
+        duration:0.3,
         scrollTrigger:{
             trigger:document.body,
             start:"100px top",
@@ -207,14 +208,14 @@ element.innerHTML = element.textContent
         gsap.to(outgoingLetters,{    
             
             yPercent:-120,
-            duration:0.2,
+            duration:0.4,
             stagger:0.05,
             ease:"power2.out",
         })
 
         gsap.to(incomingLetters,{
             yPercent:-150,
-            duration:0.2,
+            duration:0.4,
             stagger:0.05,
             ease:"power2.out",
             onComplete:()=>{

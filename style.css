@@ -31,7 +31,7 @@ header{
    padding: .2em 1em;
     z-index: 1000;
 color: white;
-transition: background-color 0.3s ease;
+/* transition: background-color 0.3s ease; */
 }
 
 .left-header{
@@ -199,7 +199,7 @@ left: 5%;
     backdrop-filter: blur(4px);
     border-radius: 20px;
     overflow: hidden;
-    color: white;
+    color: #fff;
 }
 
 .slides{
