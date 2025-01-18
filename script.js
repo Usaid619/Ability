@@ -205,7 +205,11 @@ element.innerHTML = element.textContent
 
     link.addEventListener("mouseenter", () =>{
         
-        gsap.to(outgoingLetters,{    
+        gsap.fromTo(outgoingLetters,
+            {
+                yPercent:0
+            },
+            {    
             
             yPercent:-120,
             duration:0.4,
@@ -213,15 +217,14 @@ element.innerHTML = element.textContent
             ease:"power2.out",
         })
 
-        gsap.to(incomingLetters,{
+        gsap.fromTo(incomingLetters,{
+            yPercent:0
+        },
+            {
             yPercent:-150,
             duration:0.4,
             stagger:0.05,
             ease:"power2.out",
-            onComplete:()=>{
-                gsap.set(outgoingLetters,{yPercent:0})
-                gsap.set(incomingLetters,{yPercent:0})
-            }
         })
     })
    })
